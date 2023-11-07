@@ -91,6 +91,7 @@ public class Solutions {
 		return -1;
 	}
 
+
 	//정수 내림차순으로 배치하기
 	public static long solution8(long n) {
 
