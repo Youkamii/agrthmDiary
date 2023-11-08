@@ -295,6 +295,7 @@ public class Solutions {
 	}
 
 	//핸드폰 번호 가리기
+	//1108
 	public static String solution15(String phone_number) {
 
 		char[] tmp = phone_number.toCharArray();
@@ -316,6 +317,7 @@ public class Solutions {
 
 
 	//제일 작은 수 제거하기
+	//1108
 	public static int[] solution17(int[] arr) {
 		int minPoint = 0;
 		List<Integer> tmp = new ArrayList<>();
@@ -335,6 +337,7 @@ public class Solutions {
 	}
 
 	// 가운데 글자 가져오기
+	//1108
 	public String solution18(String s) {
 
 		char[] tmp = s.toCharArray();
@@ -573,6 +576,51 @@ public class Solutions {
 
 		return answer > 0 ? answer : 0;
 	}
+
+	//모음 사전 //2
+	public static int solution29(String word) {
+	// 	A B C D E F G
+		int[] intArray = new int[5];
+		char[] tmp = word.toCharArray();
+		int answer;
+//
+//		int why;
+
+
+		for (int i = 0; i < tmp.length; i++) {
+			switch (tmp[i]) {
+				case 'A':
+					intArray[i] = 0;
+					break;
+				case 'E':
+					intArray[i] = 1;
+					break;
+				case 'I':
+					intArray[i] = 2;
+					break;
+				case 'O':
+					intArray[i] = 3;
+					break;
+				case 'U':
+					intArray[i] = 4;
+					break;
+			}
+		}
+
+		answer = intArray[0] * 781 + intArray[1] * 156 + intArray[2] * 31 + intArray[3] * 6 + intArray[4];
+//		why = answer;
+		for(char c : tmp)
+			answer++;
+//
+//		System.out.println(answer);
+//		System.out.println(why);
+//		System.out.println(" ");
+
+		return answer;
+	}
+
+
+
 
 }
 
