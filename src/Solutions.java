@@ -652,6 +652,60 @@ public class Solutions {
 		return answer.toString();
 	}
 
+	// 최대공약수와 최소공배수
+	public int[] solution31(int n, int m) {
+		int[] answer = {};
+		List<Integer> nList = new ArrayList<>();
+		List<Integer> mList = new ArrayList<>();
+		int length;
+
+		int gcd = 1;
+		int lcm = 1;
+
+		if (n > m)
+			length = n/2 + 1;
+		else
+			length = m/2 + 1;
+
+		for (int i = 1; i < length; i++) {
+			if ((n % i) == 0)
+				nList.add(i);
+			if ((m % i) == 0)
+				mList.add(i);
+		}
+
+		for (int i = 0; i < length; i++) {
+			if (nList.get(i) == mList.get(i))
+				gcd = nList.get(i);
+
+		}
+
+
+
+
+
+		return answer;
+	}
+
+	//문자열 다루기 기본
+	//1110
+	public boolean solution32(String s) {
+
+		char[] tmpArray = s.toCharArray();
+
+		if (s.length() != 4 && s.length() != 6) {
+			return false;
+		}
+
+		for (int i : tmpArray) {
+			if (!('0' <= i && i <= '9')) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
 
 
