@@ -1,3 +1,5 @@
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -342,15 +344,17 @@ public class Solutions {
 
 		char[] tmp = s.toCharArray();
 		String answer = "";
+		int length = s.length();
 
-		if ((s.length() % 2) == 0)
-			answer += tmp[s.length()/2 - 1];
-		answer += tmp[s.length()/2];
+		if ((length % 2) == 0)
+			answer += tmp[length/2 - 1];
+		answer += tmp[length/2];
 
 		return answer;
 	}
 
 	//수박
+	//1109
 	public static String solution19(int n) {
 
 		String answer = "";
@@ -362,6 +366,7 @@ public class Solutions {
 	}
 
 	//내적
+	//1109
 	public int solution20(int[] a, int[] b) {
 
 		int answer = 0;
@@ -372,6 +377,7 @@ public class Solutions {
 
 
 	//약수의 개수와 덧셈
+	//1109
 	public static int solution21(int left, int right) {
 		int answer = 0;
 
@@ -385,6 +391,7 @@ public class Solutions {
 	}
 
 	// 문자열 내림차순으로 배치하기
+	//1110
 	public static String solution22(String s) {
 		String answer = "";
 		char[] tmp = s.toCharArray();
@@ -395,6 +402,7 @@ public class Solutions {
 	}
 
 	// 문자열 내림차순으로 배치하기 2
+	//1110
 	public static String solution22_1(String s) {
 		char[] tmp = s.toCharArray();
 		Arrays.sort(tmp);
@@ -485,6 +493,7 @@ public class Solutions {
 //		return answer;
 //	}
 
+	//JadenCase 문자열 만들기 //2
 	public static String solution25(String s) {
 
 		String answer = "";
@@ -567,6 +576,7 @@ public class Solutions {
 	}
 
 	//부족한 금액 계산하기
+	//1110
 	public static long solution28(int price, int money, int count) {
 
 		long answer = money * -1;
@@ -619,8 +629,28 @@ public class Solutions {
 		return answer;
 	}
 
+	// 가장 큰 수 //2
+	public static String solution30(int[] numbers) {
 
+		String[] strArray = new String[numbers.length];
 
+		for (int i = 0; i < numbers.length; i++)
+			strArray[i] = String.valueOf(numbers[i]);
+
+		Arrays.sort(strArray, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return (o2 + o1).compareTo(o1 + o2);
+			}
+		});
+
+		StringBuilder answer = new StringBuilder();
+		for (String s : strArray) {
+			answer.append(s);
+		}
+
+		return answer.toString();
+	}
 
 }
 

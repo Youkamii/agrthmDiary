@@ -16,8 +16,9 @@ public class Main {
 //		int[][] triangle = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}};
 //    	System.out.println(Solutions.solution27_1(triangle));
 //		System.out.println(Solutions.solution29("EIO"));
+		int[] testArray = {3,6,9,12,15,18,21,24,27,30};
 
-		Solutions.solution29("EA");
+		Solutions.solution30(testArray);
 	}
 
 
