@@ -17,8 +17,10 @@ public class Main {
 //    	System.out.println(Solutions.solution27_1(triangle));
 //		System.out.println(Solutions.solution29("EIO"));
 		int[] testArray = {3,6,9,12,15,18,21,24,27,30};
+		int[] testArray2 = {3,0,6,1,5};
 
-		Solutions.solution30(testArray);
+
+		System.out.println(Solutions.solution33(testArray));
 	}
 
 

@@ -644,6 +644,12 @@ public class Solutions {
 			}
 		});
 
+		if (strArray[0].equals("0"))
+			return "0";
+
+//		if (strArray[0] == "0")
+//			return "0";
+
 		StringBuilder answer = new StringBuilder();
 		for (String s : strArray) {
 			answer.append(s);
@@ -704,6 +710,68 @@ public class Solutions {
 		}
 
 		return true;
+	}
+
+	// H-INDEX //2
+//	public static int solution33(int[] citations) {
+//		int answer = 0;
+//		boolean flag = false;
+//		int totalPaper = citations.length;
+//		int totalCount = 0;
+//
+//		for (int i : citations) {
+//			if (i < totalPaper)
+//				flag = true;
+//			totalCount += i;
+//		}
+//
+//		if (flag) {
+//			for (int i = totalCount / totalPaper; i < totalPaper / 2; i++) {
+//				answer = i;
+//				int bigger = 0;
+//
+//				for (int target : citations) {
+//					if (target > answer)
+//						bigger++;
+//				}
+//
+//				if (bigger == answer)
+//					break;
+//			}
+//		} else {
+//			for (int i = totalCount / totalPaper + 1; i > 0 / 2; i--) {
+//				answer = i;
+//				int bigger = 0;
+//
+//				for (int target : citations) {
+//					if (target > answer)
+//						bigger++;
+//				}
+//
+//				if (bigger == answer)
+//					break;
+//			}
+//		}
+//
+//		return answer;
+//	}
+
+	// H-INDEX //2
+	public static int solution33(int[] citations) {
+		int answer = 0;
+		int hIndex;
+		int citationsLength = citations.length;
+
+		for (int i = 1; i <= citationsLength; i++) {
+			hIndex = 0;
+
+			for (int j : citations)
+				if (j >= i)	hIndex++;
+
+			if (hIndex >= i) answer = i;
+		}
+
+		return answer;
 	}
 
 }
