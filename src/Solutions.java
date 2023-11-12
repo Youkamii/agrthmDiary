@@ -659,7 +659,7 @@ public class Solutions {
 	}
 
 	// 최대공약수와 최소공배수
-	public int[] solution31(int n, int m) {
+	public static int[] solution31(int n, int m) {
 		int[] answer = {};
 		List<Integer> nList = new ArrayList<>();
 		List<Integer> mList = new ArrayList<>();
@@ -685,11 +685,6 @@ public class Solutions {
 				gcd = nList.get(i);
 
 		}
-
-
-
-
-
 		return answer;
 	}
 
@@ -786,6 +781,42 @@ public class Solutions {
 		}
 
 		return answer;
+	}
+
+	// 직사각형 별 찍기
+	//1113
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int a = sc.nextInt();
+//		int b = sc.nextInt();
+//
+//		for (int i = 0; i < b; i++) {
+//			for (int j = 0; j < a; j++)
+//				System.out.print('*');
+//			if (i != b-1)
+//				System.out.println();
+//		}
+//	}
+
+	// 최대 공약수와 최소 공배수
+	//1113
+	public int[] solution35(int n, int m) {
+		int gcd = euclidean35(n, m);
+		int lcm = n * m / gcd;
+
+		return new int[]{gcd, lcm};
+	}
+
+	public int euclidean35 (int n, int m) {
+		int j = 1;
+
+		while ( j > 0 ) {
+			j = n % m;
+			n = m;
+			m = j;
+		}
+
+		return n;
 	}
 
 }

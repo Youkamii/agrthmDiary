@@ -20,7 +20,7 @@ public class Main {
 		int[] testArray2 = {3,0,6,1,5};
 
 
-		System.out.println(Solutions.solution33(testArray));
+		System.out.println(Solutions.solution31(2,5));
 	}
 
 
