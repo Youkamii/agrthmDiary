@@ -783,8 +783,8 @@ public class Solutions {
 		return answer;
 	}
 
-	// 직사각형 별 찍기
-	//1113
+//	 직사각형 별 찍기
+//	1113
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
 //		int a = sc.nextInt();
@@ -840,6 +840,8 @@ public class Solutions {
 		return answer;
 	}
 
+	//3진법 뒤집기
+	//1113
 	public static int solution36_1(int n) {
 		int answer = 0;
 
@@ -855,6 +857,31 @@ public class Solutions {
 			answer += ternary.get(i) * (int)(Math.pow(3, base++));
 
 		return answer;
+	}
+
+	//이상한 문자 만들기
+	//1114
+	public String solution37(String s) {
+		StringBuilder answer = new StringBuilder();
+		int metBlack = 0;
+		char[] tmpS = s.toCharArray();
+
+		for (int i = 0; i < tmpS.length; i++) {
+			char c = tmpS[i];
+
+
+			if (tmpS[i] == ' ') {
+				answer.append(c);
+				metBlack = 0;
+			} else {
+				if (metBlack % 2 == 0)
+					answer.append(Character.toUpperCase(c));
+				else
+					answer.append(Character.toLowerCase(c));
+				metBlack++;
+			}
+		}
+		return answer.toString();
 	}
 }
 
