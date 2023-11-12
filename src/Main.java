@@ -18,9 +18,11 @@ public class Main {
 //		System.out.println(Solutions.solution29("EIO"));
 		int[] testArray = {3,6,9,12,15,18,21,24,27,30};
 		int[] testArray2 = {3,0,6,1,5};
+		String testString = "3141592";
+		String testString2 = "271";
 
 
-		System.out.println(Solutions.solution36(125));
+		System.out.println(Solutions.solution39(testString, testString2));
 	}
 
 
