@@ -644,6 +644,8 @@ public class Solutions {
 			}
 		});
 
+
+
 		if (strArray[0].equals("0"))
 			return "0";
 
@@ -920,6 +922,138 @@ public class Solutions {
 
 		return answer;
 	}
+
+	// 전화번호 목록 //2
+	public boolean solution40(String[] phone_book) {
+		Arrays.sort(phone_book);
+
+		for (int i = 0; i < phone_book.length - 1; i++) {
+			if (phone_book[i + 1].startsWith(phone_book[i]))
+				return false;
+		}
+		return true;
+	}
+
+	// 최소직사각형
+	public int solution41(int[][] sizes) {
+		int x = 0;
+		int y = 0;
+
+		for (int[] i : sizes) {
+			Arrays.sort(i);
+			if (i[0] > x)
+				x = i[0];
+			if (i[1] > y)
+				y = i[1];
+		}
+
+		return x * y;
+	}
+
+	//시저암호
+	public static String solution42(String s, int n) {
+		char[] tmpS = s.toCharArray();
+		StringBuilder answer = new StringBuilder();
+
+		for (char c : tmpS)
+			answer.append(ceasar(c,n));
+
+		return answer.toString();
+	}
+
+	public static char ceasar(char c, int n) {
+		if ('a' <= c && c <= 'z') {
+			c += n;
+			if (c > 'z')
+				c -= 26;
+		} else if ('A' <= c && c <= 'Z') {
+			c += n;
+			if (c > 'Z')
+				c -= 26;
+		}
+		return c;
+	}
+
+	//숫자 문자열과 영단어
+	public int solution43(String s) {
+		int answer = 0;
+		int[] arrayTmp = new int[2];
+
+		while (s.length() > 0) {
+			answer *= 10;
+
+			if (!('0' <= s.charAt(0) && s.charAt(0) <= '9')) {
+				arrayTmp = stringToNumber(s);
+				answer += arrayTmp[0];
+				s = s.substring(arrayTmp[1]);
+			} else {
+				answer += s.charAt(0) - '0';
+				s = s.substring(1);
+			}
+		}
+
+		return answer;
+	}
+
+	public int[] stringToNumber(String s) {
+		String[] numberString = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+		int i;
+		int j = 0;
+
+		for (i = 0; i < numberString.length; i++) {
+			if (s.startsWith(numberString[i]))
+				break;
+		}
+
+		switch (i) {
+			case 0, 4, 5, 9 :
+				j = 4;
+				break;
+			case 1, 2, 6 :
+				j = 3;
+				break;
+			case 3, 7, 8 :
+				j = 5;
+				break;
+		}
+
+		return new int[] {i, j};
+	}
+
+	// 문자열 내 마음대로 정렬하기
+	public String[] solution44(String[] strings, int n) {
+
+
+
+		Arrays.sort(strings, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				if (o1.charAt(n) != o2.charAt(n))
+					return o1.charAt(n) - o2.charAt(n);
+				return o1.compareTo(o2);
+			}
+		});
+		return strings;
+	}
+
+//	public String[] solution44(String[] strings, int n) {
+//		String[] answer = new String[strings.length];
+//
+//		String[][] mapString = new String[strings.length][2];
+//
+//		for (int i = 0; i < strings.length; i++) {
+//			mapString[i][0] = strings[i].substring(n);
+//			mapString[i][1] = String.valueOf(i);
+//		}
+//
+//		Arrays.sort(mapString);
+//
+//		for (String[] s : mapString) {
+//			answer[Integer.parseInt(s.[1])] = s;
+//		}
+//		return answer;
+//	}
+
 }
 
 

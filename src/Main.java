@@ -22,7 +22,7 @@ public class Main {
 		String testString2 = "271";
 
 
-		System.out.println(Solutions.solution39(testString, testString2));
+		System.out.println(Solutions.solution42("abC", 1));
 	}
 
 
