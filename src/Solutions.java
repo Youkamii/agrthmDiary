@@ -1054,6 +1054,46 @@ public class Solutions {
 //		return answer;
 //	}
 
+
+
+	//의상 //2
+//	public int solution(String[][] clothes) {
+//		int answer = 0;
+//		int count;
+//		String cType = "";
+//
+//		String[] clothesType = new String[clothes.length];
+//
+//		for (int i = 0; i < clothesType.length; i++)
+//			clothesType[i] = clothes[i][1];
+//
+//		Arrays.sort(clothesType);
+//
+//		for (String s : clothesType) {
+//			if (!(cType.equals(s)))
+//				cType = s;
+//
+//		}
+//
+//
+//
+//		return answer;
+//	}
+	public int solution45(String[][] clothes) {
+		int answer = 1;
+		HashMap<String, Integer> clothesMap = new HashMap<>();
+		String type;
+
+		for (String[] cloth : clothes) {
+			type = cloth[1];
+			clothesMap.put(type, clothesMap.getOrDefault(type, 1) + 1);
+		}
+
+		for (int count : clothesMap.values())
+			answer *= count;
+
+		return answer - 1;
+	}
 }
 
 
