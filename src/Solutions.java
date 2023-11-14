@@ -865,7 +865,7 @@ public class Solutions {
 	//1114
 	public String solution37(String s) {
 		StringBuilder answer = new StringBuilder();
-		int metBlack = 0;
+		int metBlank = 0;
 		char[] tmpS = s.toCharArray();
 
 		for (int i = 0; i < tmpS.length; i++) {
@@ -874,13 +874,13 @@ public class Solutions {
 
 			if (tmpS[i] == ' ') {
 				answer.append(c);
-				metBlack = 0;
+				metBlank = 0;
 			} else {
-				if (metBlack % 2 == 0)
+				if (metBlank % 2 == 0)
 					answer.append(Character.toUpperCase(c));
 				else
 					answer.append(Character.toLowerCase(c));
-				metBlack++;
+				metBlank++;
 			}
 		}
 		return answer.toString();
@@ -1061,6 +1061,7 @@ public class Solutions {
 //		int answer = 0;
 //		int count;
 //		String cType = "";
+//
 //
 //		String[] clothesType = new String[clothes.length];
 //
