@@ -980,7 +980,7 @@ public class Solutions {
 	//1115
 	public int solution43(String s) {
 		int answer = 0;
-		int[] arrayTmp = new int[2];
+		int[] arrayTmp;
 
 		while (!s.isEmpty()) {
 			answer *= 10;
@@ -1018,6 +1018,7 @@ public class Solutions {
 	}
 
 	// 문자열 내 마음대로 정렬하기
+	//1116
 	public String[] solution44(String[] strings, int n) {
 
 
@@ -1094,6 +1095,7 @@ public class Solutions {
 	}
 
 	// k번째 수
+	//1116
 	public int[] solution46(int[] array, int[][] commands) {
 		int [] answer = new int[commands.length];
 
@@ -1141,6 +1143,18 @@ public class Solutions {
 			answer[i] = answerList.get(i);
 
 		return answer;
+	}
+
+	//두개 뽑아서 더하기
+	public int[] solution48(int[] numbers) {
+		Set<Integer> answer = new HashSet<>();
+
+		for (int i = 0; i < numbers.length - 1; i++) {
+			for (int j = i + 1; j < numbers.length; j++)
+				answer.add(numbers[i] + numbers[j]);
+		}
+
+		return answer.stream().sorted().mapToInt(i -> i).toArray();
 	}
 }
 
