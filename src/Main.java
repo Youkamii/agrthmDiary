@@ -29,7 +29,7 @@ public class Main {
 ////
 //		System.out.println(Solutions.solution47(testArray, testArray2));
 
-//		System.out.println(solution50(testArray5));
+		System.out.println(Solutions.solution51(2,1,20));
 	}
 
 
