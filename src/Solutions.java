@@ -1156,6 +1156,24 @@ public class Solutions {
 
 		return answer.stream().sorted().mapToInt(i -> i).toArray();
 	}
+
+	// 가장 가까운 글자
+	public int[] solution49(String s) {
+		int[] answer = new int[s.length()];
+		char[] tmpS = s.toCharArray();
+
+		Map<Character, Integer> words = new HashMap<>();
+
+		for (int i = 0; i < tmpS.length; i++) {
+			if (words.containsKey(tmpS[i]))
+				answer[i] = i - words.get(tmpS[i]);
+			else
+				answer[i] = -1;
+			words.put(tmpS[i], i);
+		}
+
+		return answer;
+	}
 }
 
 
