@@ -20,13 +20,18 @@ public class Main {
 		int[] testArray2 = {1, 1, 1, 1, 1, 1};
 		int[] testArray3 = {93,30,55};
 		int[] testArray4 = {1,30,5};
+
+		int[] testArray5 = {1, 3, 4, 6};
 //		String testString = "3141592";
 //		String testString2 = "271";
-		System.out.println(Arrays.toString(Solutions.solution47(testArray, testArray2)));
-		System.out.println(Arrays.toString(Solutions.solution47(testArray3, testArray4)));
-//
+//		System.out.println(Arrays.toString(Solutions.solution47(testArray, testArray2)));
+//		System.out.println(Arrays.toString(Solutions.solution47(testArray3, testArray4)));
+////
 //		System.out.println(Solutions.solution47(testArray, testArray2));
+
+//		System.out.println(solution50(testArray5));
 	}
+
 
 
 }

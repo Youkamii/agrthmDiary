@@ -1,6 +1,8 @@
 import javax.sound.midi.Soundbank;
+import java.security.Key;
 import java.sql.SQLOutput;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Solutions {
@@ -1173,6 +1175,55 @@ public class Solutions {
 		}
 
 		return answer;
+	}
+
+	//푸드 파이트 대회
+//	public String solution50(int[] food) {
+//		List<Integer> foodList = new ArrayList<>();
+//		int[] kcal = new int[food.length - 1];
+//
+//		for (int i = 1; i < food.length; i++)
+//			kcal[i - 1] = food[i] / 2;
+//
+////		int heavy= 1;
+////
+////		for (int k : kcal) {
+////			for (int j = 0; j < k; j++)
+////				foodList.add(heavy);
+////			heavy++;
+////		}
+//
+//		for (int i = 0; i < kcal.length; i++) {
+//			for (int j = 0; j < kcal[i]; j++)
+//				foodList.add(i + 1);
+//		}
+//
+//		foodList.add(0);
+//
+//		for (int i = foodList.size() - 2; i >= 0; i--)
+//			foodList.add(foodList.get(i));
+//
+//		return foodList.stream().map(String::valueOf).collect(Collectors.joining());
+//	}
+	//푸드 파이트 대회
+	public String solution50(int[] food) {
+		StringBuilder foodTable = new StringBuilder();
+
+		for (int i = 1; i < food.length; i++) {
+			for (int j = 0; j < food[i] / 2; j++)
+				foodTable.append(i);
+		}
+//		for (int i = 1; i < food.length; i++)
+//			foodTable.append(String.valueOf(i).repeat(Math.max(0, food[i] / 2)));
+
+		foodTable.append("0");
+
+		for (int i = food.length - 1; i > 0; i--) {
+			for (int j = 0; j < food[i] / 2; j++)
+				foodTable.append(i);
+		}
+
+		return foodTable.toString();
 	}
 }
 
