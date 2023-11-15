@@ -935,6 +935,7 @@ public class Solutions {
 	}
 
 	// 최소직사각형
+	//1115
 	public int solution41(int[][] sizes) {
 		int x = 0;
 		int y = 0;
@@ -951,6 +952,7 @@ public class Solutions {
 	}
 
 	//시저암호
+	//1115
 	public static String solution42(String s, int n) {
 		char[] tmpS = s.toCharArray();
 		StringBuilder answer = new StringBuilder();
@@ -975,11 +977,12 @@ public class Solutions {
 	}
 
 	//숫자 문자열과 영단어
+	//1115
 	public int solution43(String s) {
 		int answer = 0;
 		int[] arrayTmp = new int[2];
 
-		while (s.length() > 0) {
+		while (!s.isEmpty()) {
 			answer *= 10;
 
 			if (!('0' <= s.charAt(0) && s.charAt(0) <= '9')) {
@@ -991,7 +994,6 @@ public class Solutions {
 				s = s.substring(1);
 			}
 		}
-
 		return answer;
 	}
 
@@ -1005,17 +1007,12 @@ public class Solutions {
 				break;
 		}
 
-		switch (i) {
-			case 0, 4, 5, 9 :
-				j = 4;
-				break;
-			case 1, 2, 6 :
-				j = 3;
-				break;
-			case 3, 7, 8 :
-				j = 5;
-				break;
-		}
+		j = switch (i) {
+			case 0, 4, 5, 9 -> 4;
+			case 1, 2, 6 -> 3;
+			case 3, 7, 8 -> 5;
+			default -> j;
+		};
 
 		return new int[] {i, j};
 	}
@@ -1094,6 +1091,56 @@ public class Solutions {
 			answer *= count;
 
 		return answer - 1;
+	}
+
+	// k번째 수
+	public int[] solution46(int[] array, int[][] commands) {
+		int [] answer = new int[commands.length];
+
+		for (int i = 0; i < commands.length; i++) {
+			int[] tmp = new int[commands[i][1] - commands[i][0] + 1];
+
+			int count = 0;
+			for (int j = commands[i][0]; j <= commands[i][1]; j++)
+				tmp[count++] = array[j - 1];
+
+			Arrays.sort(tmp);
+
+			answer[i] = tmp[commands[i][2] - 1];
+		}
+
+		return answer;
+	}
+
+	//기능개발 /2
+	public static int[] solution47(int[] progresses, int[] speeds) {
+		List<Integer> answerList = new ArrayList<>();
+		int[] jobDone = new int[progresses.length];
+
+		for (int i = 0; i < progresses.length; i++)
+			jobDone[i] = ((100 - progresses[i] - 1) / speeds[i] + 1);
+
+		int count = 1;
+		int longestDay = jobDone[0];
+
+		for (int i = 1; i < jobDone.length; i++) {
+			if (longestDay >= jobDone[i])
+				count++;
+			else {
+				answerList.add(count);
+				count = 1;
+				longestDay = jobDone[i];
+			}
+		}
+
+		answerList.add(count);
+
+		int[] answer = new int[answerList.size()];
+
+		for (int i = 0; i < answer.length; i++)
+			answer[i] = answerList.get(i);
+
+		return answer;
 	}
 }
 

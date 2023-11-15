@@ -16,13 +16,16 @@ public class Main {
 //		int[][] triangle = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}};
 //    	System.out.println(Solutions.solution27_1(triangle));
 //		System.out.println(Solutions.solution29("EIO"));
-		int[] testArray = {3,6,9,12,15,18,21,24,27,30};
-		int[] testArray2 = {3,0,6,1,5};
-		String testString = "3141592";
-		String testString2 = "271";
-
-
-		System.out.println(Solutions.solution42("abC", 1));
+		int[] testArray = {95, 90, 99, 99, 80, 99};
+		int[] testArray2 = {1, 1, 1, 1, 1, 1};
+		int[] testArray3 = {93,30,55};
+		int[] testArray4 = {1,30,5};
+//		String testString = "3141592";
+//		String testString2 = "271";
+		System.out.println(Arrays.toString(Solutions.solution47(testArray, testArray2)));
+		System.out.println(Arrays.toString(Solutions.solution47(testArray3, testArray4)));
+//
+//		System.out.println(Solutions.solution47(testArray, testArray2));
 	}
 
 
