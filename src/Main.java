@@ -29,9 +29,10 @@ public class Main {
 ////
 //		System.out.println(Solutions.solution47(testArray, testArray2));
 
-		System.out.println(Solutions.solution51(2,1,20));
+		int[][] result = Solutions.solution53(3);
+		for (int i = 0; i < result.length; i++) {
+			System.out.println(Arrays.toString(result[i]));
 	}
-
-
+	}
 
 }
