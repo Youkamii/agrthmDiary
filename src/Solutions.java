@@ -992,7 +992,7 @@ public class Solutions {
 				answer += arrayTmp[0];
 				s = s.substring(arrayTmp[1]);
 			} else {
-				answer += s.charAt(0) - '0';
+				answer += s.charAt(0) - '0'; // -48
 				s = s.substring(1);
 			}
 		}
@@ -1235,6 +1235,35 @@ public class Solutions {
 			answer += n / a * b;
 			remainder = n % a;
 			n = n / a * b + remainder;
+		}
+
+		return answer;
+	}
+
+	// 프로세스 //2
+	public int solution52(int[] priorities, int location) {
+
+		int answer = 0;
+
+		Queue<Integer> queue = new LinkedList<>();
+		for (int priority : priorities)
+			queue.offer(priority);
+
+		while (!queue.isEmpty()) {
+
+			int current = queue.poll();
+
+			if (queue.stream().anyMatch(p -> p > current)) {
+				queue.offer(current);
+				if (location == 0)
+					location = queue.size() - 1;
+				else location--;
+			} else {
+				answer++;
+				if (location == 0)
+					return answer;
+				location--;
+			}
 		}
 
 		return answer;
