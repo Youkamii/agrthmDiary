@@ -1229,12 +1229,10 @@ public class Solutions {
 	//콜라 문제
 	public static int solution51(int a, int b, int n) {
 		int answer = 0;
-		int remainder;
 
 		while ( n >= a ) {
 			answer += n / a * b;
-			remainder = n % a;
-			n = n / a * b + remainder;
+			n = n / a * b + n % a;
 		}
 
 		return answer;

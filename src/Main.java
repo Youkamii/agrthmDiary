@@ -29,10 +29,11 @@ public class Main {
 ////
 //		System.out.println(Solutions.solution47(testArray, testArray2));
 
-		int[][] result = Solutions.solution53(3);
-		for (int i = 0; i < result.length; i++) {
-			System.out.println(Arrays.toString(result[i]));
-	}
+//		int[][] result = Solutions.solution53(3);
+//		for (int i = 0; i < result.length; i++) {
+//			System.out.println(Arrays.toString(result[i]));
+//	}
+		System.out.println(zeroSolutions.solution2(10));
 	}
 
 }
