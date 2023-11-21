@@ -16,12 +16,12 @@ public class Main {
 //		int[][] triangle = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}};
 //    	System.out.println(Solutions.solution27_1(triangle));
 //		System.out.println(Solutions.solution29("EIO"));
-		int[] testArray = {95, 90, 99, 99, 80, 99};
-		int[] testArray2 = {1, 1, 1, 1, 1, 1};
-		int[] testArray3 = {93,30,55};
-		int[] testArray4 = {1,30,5};
-
-		int[] testArray5 = {1, 3, 4, 6};
+//		int[] testArray = {95, 90, 99, 99, 80, 99};
+//		int[] testArray2 = {1, 1, 1, 1, 1, 1};
+//		int[] testArray3 = {93,30,55};
+//		int[] testArray4 = {1,30,5};
+//
+//		int[] testArray5 = {1, 3, 4, 6};
 //		String testString = "3141592";
 //		String testString2 = "271";
 //		System.out.println(Arrays.toString(Solutions.solution47(testArray, testArray2)));
@@ -33,7 +33,34 @@ public class Main {
 //		for (int i = 0; i < result.length; i++) {
 //			System.out.println(Arrays.toString(result[i]));
 //	}
-		System.out.println(zeroSolutions.solution2(10));
+//		System.out.println(zeroSolutions.solution2(10));
+		System.out.println("start");
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T = sc.nextInt();
+
+		for (int test_case = 1; test_case <= T; test_case++) {
+			int N = sc.nextInt();
+			int[][] matrix = new int[N][N];
+
+			// 행렬 입력 받기
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					matrix[i][j] = sc.nextInt();
+				}
+			}
+
+			// 회전된 행렬 출력
+			System.out.println("#" + test_case);
+			for (int i = 0; i < N; i++) {
+				zeroSolutions.printRotated(matrix, 90, i);
+				System.out.print(" ");
+				zeroSolutions.printRotated(matrix, 180, i);
+				System.out.print(" ");
+				zeroSolutions.printRotated(matrix, 270, i);
+				System.out.println();
+			}
+		}
 	}
 
 }

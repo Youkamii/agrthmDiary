@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class zeroSolutions {
 
 	//두 수의 차
@@ -60,7 +63,7 @@ public class zeroSolutions {
 	}
 
 	// 배열의 평균값
-	public double solution(int[] numbers) {
+	public double solution10(int[] numbers) {
 		double answer = 0;
 
 		for(int i = 0; i < numbers.length; i++)
@@ -68,4 +71,35 @@ public class zeroSolutions {
 
 		return answer/numbers.length;
 	}
+
+	public int solution(int[] numbers) {
+
+		Arrays.sort(numbers);
+
+		return numbers[numbers.length -1] * numbers[numbers.length -2];
+	}
+
+
+	// 특정 각도로 회전한 행렬의 행을 출력하는 함수
+	public static void printRotated(int[][] matrix, int angle, int row) {
+		int N = matrix.length;
+		switch (angle) {
+			case 90:
+				for (int i = N - 1; i >= 0; i--) {
+					System.out.print(matrix[i][row]);
+				}
+				break;
+			case 180:
+				for (int i = N - 1; i >= 0; i--) {
+					System.out.print(matrix[N - 1 - row][i]);
+				}
+				break;
+			case 270:
+				for (int i = 0; i < N; i++) {
+					System.out.print(matrix[i][N - 1 - row]);
+				}
+				break;
+		}
+	}
+
 }

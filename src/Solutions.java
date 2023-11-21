@@ -1281,14 +1281,27 @@ public class Solutions {
 			return;
 
 		Hanoi(n - 1, first, third, second, result);
-		System.out.print(first + " ");
-		System.out.println(third);
-		result.add(new int[]{first, third});
-		Hanoi(n - 1, second, first, third, result);
-	}
-
-
+		System.out.print(first + " "));
+	Hanoi(n - 1, second, first, third, result);
 }
+
+	public static String solution54(String[] cards1, String[] cards2, String[] goal) {
+		List<String> c1List = new ArrayList<String>(Arrays.asList(cards1));
+		List<String> c2List = new ArrayList<String>(Arrays.asList(cards2));
+
+		for (String target : goal) {
+			if (!c1List.isEmpty() && c1List.get(0).equals(target))
+				c1List.remove(0);
+			else if (!c2List.isEmpty() && c2List.get(0).equals(target))
+				c2List.remove(0);
+			else
+				return "No";
+		}
+		return "Yes";
+	}
+}
+
+
 
 
 
