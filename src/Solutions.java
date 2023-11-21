@@ -1310,6 +1310,25 @@ public class Solutions {
 
 		return days[totalDays % 7];
 	}
+
+	public int[] solution56(int k, int[] score) {
+		Queue<Integer> hall = new PriorityQueue<>();
+		int[] result = new int[score.length];
+
+		for (int i = 0; i < score.length; i++) {
+			if (hall.size() < k)
+				hall.offer(score[i]);
+			else {
+				if (score[i] > hall.peek()) {
+					hall.poll();
+					hall.offer(score[i]);
+				}
+			}
+			result[i] = hall.peek();
+		}
+
+		return result;
+	}
 }
 
 
