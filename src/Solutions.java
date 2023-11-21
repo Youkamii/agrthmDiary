@@ -1282,9 +1282,10 @@ public class Solutions {
 
 		Hanoi(n - 1, first, third, second, result);
 		System.out.print(first + " ");
-	Hanoi(n - 1, second, first, third, result);
-}
+		Hanoi(n - 1, second, first, third, result);
+	}
 
+	// 카드 뭉치
 	public static String solution54(String[] cards1, String[] cards2, String[] goal) {
 		List<String> c1List = new ArrayList<String>(Arrays.asList(cards1));
 		List<String> c2List = new ArrayList<String>(Arrays.asList(cards2));
@@ -1300,6 +1301,7 @@ public class Solutions {
 		return "Yes";
 	}
 
+	// 달력
 	public String solution55(int a, int b) {
 		String[] days = {"FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"};
 		int[] monthDays = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -1311,6 +1313,7 @@ public class Solutions {
 		return days[totalDays % 7];
 	}
 
+	//명예의 전당
 	public int[] solution56(int k, int[] score) {
 		Queue<Integer> hall = new PriorityQueue<>();
 		int[] result = new int[score.length];
@@ -1326,9 +1329,36 @@ public class Solutions {
 			}
 			result[i] = hall.peek();
 		}
-
 		return result;
 	}
+
+	//과일 장수
+	public static int solution57(int k, int m, int[] score) {
+
+		Arrays.sort(score);
+
+		int[] box = new int[m];
+		int i = score.length - 1;
+		int minValue = k;
+		int count = m;
+		int answer = 0;
+
+		while ( i >= 0 ) {
+			if (count > 0) {
+				count--;
+				if (score[i] < minValue)
+					minValue = score[i];
+			}
+
+			if ( count == 0 ) {
+				answer += minValue * m;
+				count = m;
+			}
+			i--;
+		}
+		return answer;
+	}
+
 }
 
 

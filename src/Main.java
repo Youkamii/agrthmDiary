@@ -34,33 +34,9 @@ public class Main {
 //			System.out.println(Arrays.toString(result[i]));
 //	}
 //		System.out.println(zeroSolutions.solution2(10));
-		System.out.println("start");
-		Scanner sc = new Scanner(System.in);
-		int T;
-		T = sc.nextInt();
 
-		for (int test_case = 1; test_case <= T; test_case++) {
-			int N = sc.nextInt();
-			int[][] matrix = new int[N][N];
-
-			// 행렬 입력 받기
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					matrix[i][j] = sc.nextInt();
-				}
-			}
-
-			// 회전된 행렬 출력
-			System.out.println("#" + test_case);
-			for (int i = 0; i < N; i++) {
-				zeroSolutions.printRotated(matrix, 90, i);
-				System.out.print(" ");
-				zeroSolutions.printRotated(matrix, 180, i);
-				System.out.print(" ");
-				zeroSolutions.printRotated(matrix, 270, i);
-				System.out.println();
-			}
-		}
+		int[] box = new int[]{4,1,2,2,4,4,4,4,1,2,4,2};
+		System.out.println(Solutions.solution57(4,3,box));
 	}
 
 }
