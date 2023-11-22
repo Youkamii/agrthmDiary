@@ -1359,6 +1359,100 @@ public class Solutions {
 		return answer;
 	}
 
+	//모의고사
+	public static int[] solution58(int[] answers) {
+		int[] minsu = new int[answers.length];
+		int[] yeonghee = new int[answers.length];
+		int[] taeho = new int[answers.length];
+
+		int[] yArray = new int[]{2, 1, 2, 3, 2, 4, 2, 5};
+		int[] tArray = new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+		for (int i = 0; i < minsu.length; i++) {
+			minsu[i] = (i % 5) + 1;
+			yeonghee[i] = yArray[i % yArray.length];
+			taeho[i] = tArray[i % tArray.length];
+		}
+
+		int minsuScore = 0;
+		int yeongheeScore = 0;
+		int taehoScore = 0;
+
+		for (int i = 0; i < answers.length; i++) {
+			if (answers[i] == minsu[i])	minsuScore++;
+			if (answers[i] == yeonghee[i])	yeongheeScore++;
+			if (answers[i] == taeho[i])	taehoScore++;
+		}
+
+		int highestScore = Math.max(minsuScore, Math.max(yeongheeScore, taehoScore));
+
+		List<Integer> answer = new ArrayList<>();
+		if (minsuScore == highestScore)	answer.add(1);
+		if (yeongheeScore == highestScore)	answer.add(2);
+		if (taehoScore == highestScore)	answer.add(3);
+
+		return answer.stream().mapToInt(i -> i).toArray();
+	}
+
+	// [3차] 방금 그 곡
+	public static String solution59(String m, String[] musicinfos) {
+
+		//"ABCDEFG"
+		// ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"]
+
+		m = sharp(m);
+
+		String answer = "(None)";
+		int longestPlayTime = 0;
+
+		String[] music;
+		int playTime;
+		String fullsong;
+
+		for (String flow : musicinfos) {
+			music = flow.split(",");
+			playTime = playTime(music[0], music[1]);
+			fullsong = fullSong(music[3], playTime);
+
+			if (fullsong.contains(m) && playTime > longestPlayTime) {
+				longestPlayTime = playTime;
+				answer = music[2];
+			}
+		}
+
+		return answer;
+	}
+
+	public static int playTime(String a, String b) {
+		String[] songStrat = a.split(":");
+		String[] songEnd = b.split(":");
+
+		return (Integer.parseInt(songEnd[0]) * 60 + Integer.parseInt(songEnd[1]))
+				- (Integer.parseInt(songStrat[0]) * 60 + Integer.parseInt(songStrat[1]));
+	}
+
+	public static String fullSong (String music, int playTime) {
+		StringBuilder fullsong = new StringBuilder();
+		char[] musicArray = music.toCharArray();
+
+		int j = 0;
+		for (int i = 0; i < playTime; i++) {
+			fullsong.append(musicArray[j]);
+			j++;
+			if (j >= musicArray.length)
+				j = 0;
+		}
+
+		return fullsong.toString();
+	}
+
+	public static String sharp(String music) {
+		music = music.replaceAll("C#", "c");
+		music = music.replaceAll("D#", "d");
+		music = music.replaceAll("F#", "f");
+		music = music.replaceAll("G#", "g");
+		music = music.replaceAll("A#", "a");
+		return music;
+	}
 }
 
 
