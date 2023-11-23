@@ -1455,7 +1455,7 @@ public class Solutions {
 	}
 
 	//소수 만들기
-	public int solution(int[] nums) {
+	public int solution60(int[] nums) {
 		int answer = 0;
 
 		for (int i = 0; i < nums.length - 2; i++) {
@@ -1469,12 +1469,163 @@ public class Solutions {
 		return answer;
 	}
 	public boolean isPrime(int number) {
-		if (number < 2) return false;
+		//if (number < 2) return false;
 		for (int i = 2; i * i <= number; i++)
 			if (number % i == 0) return false;
 
 		return true;
 	}
+
+
+	// 순위 검색
+	public int[] solution61(String[] info, String[] query) {
+
+		int[] pass = new int[query.length];
+		int count;
+
+		for (int i = 0; i < query.length; i++) {
+			count = 0;
+
+			for (int j = 0; j < info.length; j++) {
+				if (documentInterview(info[j].split(" "), query[i].split(" and | ")))
+					count++;
+			}
+
+			pass[i] = count;
+		}
+
+		return pass;
+
+
+//		String[] applicant;
+//		int appNum;
+//		List<Integer> pass = new ArrayList<>();
+//
+//		for (int i = 0; i < info.length; i++) {
+//			appNum = i + 1;
+//			applicant = info[i].split(" ");
+//			//[java, backend, junior, pizza, 150]
+//
+//			if (documentInterview(applicant, query))
+//				pass.add(appNum);
+//		}
+//
+////		return pass.stream().mapToInt(i -> i).toArray();
+//		int[] passArray = new int[pass.size()];
+//		for (int i = 0; i < passArray.length; i ++)
+//			passArray[i] = pass.get(i);
+//		return passArray;
+	}
+
+	public boolean documentInterview (String[] applicant, String[] query) {
+
+		for (int i = 0; i < 4; i++)	{
+			if (!query[i].equals("-") && !applicant[i].equals(query[i]))
+				return false;
+
+			//java backend junior pizza 150
+			//java backend 	-	 pizza 100"
+		}
+		return Integer.parseInt(applicant[4]) >= Integer.parseInt(query[4]);
+
+
+//		String[] detailQuery;
+//		boolean flag;
+//
+//		for (int i = 0; i < query.length; i++) {
+//			detailQuery = query[i].split(" and ");
+//			flag = true;
+//
+//			for (int j = 0; j < detailQuery.length - 1; j++) {
+//				if (!detailQuery[j].equals("-") && !applicant[j].equals(detailQuery[j])) {
+//					flag = false;
+//					break;
+//				}
+//			}
+//
+//			if (flag && Integer.parseInt(applicant[4]) >= Integer.parseInt(detailQuery[detailQuery.length - 1])) {
+//				return true;
+//			}
+//		}
+//
+//		return false;
+
+
+//		for (int i = 0; i < query.length; i++) {
+//			String[] detailQuery = query[i].split(" and | ");
+//			boolean isMatched = true;
+//
+//			for (int j = 0; j < 4; j++) { // 4개의 조건 (언어, 직군, 경력, 소울푸드)
+//				if (!detailQuery[j].equals("-") && !detailQuery[j].equals(applicant[j])) {
+//					isMatched = false;
+//					break;
+//				}
+//			}
+//
+//			// 점수 비교 (조건이 일치할 경우에만)
+//			if (isMatched && Integer.parseInt(applicant[4]) < Integer.parseInt(detailQuery[4])) {
+//				isMatched = false;
+//			}
+//
+//			if (isMatched) {
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	}
+	}
+
+//	//덧칠하기
+//	public int solution62(int n, int m, int[] section) {
+//		int answer = 0;
+//		int done = 0;
+//
+////		int answer2 = 0;
+////		int done2 = section.length;
+//
+//		for (int i = 0; i < section.length; i++) {
+//			if (done < section[i]) {
+//				answer ++;
+//				done += section[i] + m - 1;
+//			}
+//		}
+//
+////		for (int i = section.length - 1; i > 0; i--) {
+////			if (done2 > section[i]) {
+////				answer ++;
+////				done2 = section[i] - m;
+////			}
+////		}
+//
+//
+//
+//		return answer;
+//	}
+
+	//덧칠하기
+	public int solution62(int n, int m, int[] section) {
+		int answer = 0;
+		int end;
+		int done = 0;
+
+//		for (int i = 0; i < section.length; i++) {
+//			end = section[i] + m - 1;
+//			answer++;
+//			i = end;
+//		}
+
+		while (done < section.length) {
+			end = section[done] + m - 1; //칠
+			answer++; // 붓 횟수
+
+			while (done < section.length && section[done] <= end)
+				done++;
+		}
+
+		return answer;
+	}
+
 }
 
 
