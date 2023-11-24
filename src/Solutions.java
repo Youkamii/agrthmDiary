@@ -1639,12 +1639,12 @@ public class Solutions {
 	}
 
 	public boolean rolling (String s, int i) {
-		Stack<Character> stack = new Stack<Character>();
+		Stack<Character> stack = new Stack<>();
 
-		String tmpLeft = s.substring(0, i + 1);
-		String tmpRight = s.substring(i + 1, s.length());
+//		String tmpLeft = s.substring(0, i + 1);
+//		String tmpRight = s.substring(i + 1, s.length());
 
-		char[] tmpArray = (tmpRight + tmpLeft).toCharArray();
+		char[] tmpArray = (s.substring(i + 1, s.length()) + s.substring(0, i + 1)).toCharArray();
 
 		for (char c : tmpArray) {
 			if (c == '(' || c == '{' || c == '[')
@@ -1663,7 +1663,7 @@ public class Solutions {
 	}
 
 	//기사단원의 무기
-	public int solution(int number, int limit, int power) {
+	public int solution64(int number, int limit, int power) {
 		int answer = 0;
 		int knightPower;
 
@@ -1691,6 +1691,33 @@ public class Solutions {
 
 		return count;
 	}
+
+	// 로또의 최고 순위와 최저 순위
+	public int[] solution65(int[] lottos, int[] win_nums) {
+
+		int zero = 0;
+		int match = 0;
+
+		for (int i : lottos) {
+			if (i == 0)
+				zero++;
+			else {
+				for (int j : win_nums) {
+					if (i == j)
+						match++;
+				}
+			}
+		}
+
+		int lowRank = 7 - match;
+		int highRank = lowRank - zero;
+
+		lowRank = lowRank > 6 ? 6 : lowRank;
+		highRank = highRank > 6 ? 6 : highRank;
+
+		return new int[]{highRank, lowRank};
+	}
+
 
 
 
