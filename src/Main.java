@@ -35,11 +35,7 @@ public class Main {
 //	}
 //		System.out.println(zeroSolutions.solution2(10));
 
-		int[] box = new int[]{1,3,2,4,2};
-		String[] music = new String[]{"12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"};
 
-
-		System.out.println(Solutions.solution59("ABCDEFG", music));
 	}
 
 }
