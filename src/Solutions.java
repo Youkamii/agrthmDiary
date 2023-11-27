@@ -1718,7 +1718,124 @@ public class Solutions {
 		return new int[]{highRank, lowRank};
 	}
 
+	// 옹알이 (2)
+	public int solution66(String[] babbling) {
+		int answer = 0;
 
+		String[] onlyPronounce = new String[]{"aya", "ye", "woo", "ma"};
+		StringBuilder tmp;
+
+		for (String s : babbling) {
+
+			tmp = new StringBuilder(s);
+
+			for (String p : onlyPronounce) {
+				int i = tmp.indexOf(p);
+				while (i != -1) {
+					tmp.delete(i, i + p.length());
+					i = tmp.indexOf(p);
+				}
+			}
+
+			if (tmp.isEmpty())
+				answer++;
+		}
+
+		return answer;
+	}
+
+	// 숫자 짝궁  // 시간 초과
+	public String solution67(String X, String Y) {
+		StringBuilder answer =new StringBuilder();
+		List<Character> tmp = new ArrayList<>();
+
+		char[] tmpX = X.toCharArray();
+		char[] tmpY = Y.toCharArray();
+
+		for (char x : tmpX) {
+			for (int i = 0; i < tmpY.length; i++) {
+				if (x == tmpY[i]) {
+					tmp.add(x);
+					tmpY[i] = 'x';
+					break;
+				}
+			}
+		}
+
+		if (tmp.isEmpty())
+			return "-1";
+
+		Collections.sort(tmp, Collections.reverseOrder());
+
+		for (char c : tmp)
+			answer.append(c);
+
+		String result = answer.toString();
+		if (result.matches("0+"))
+			return "0";
+
+		return result;
+	}
+
+	// 숫자 짝궁
+	public String solution67_1(String X, String Y) {
+		Map<Character, Integer> tmpX = new HashMap<>();
+		Map<Character, Integer> tmpY = new HashMap<>();
+		List<Character> commonNumbers = new ArrayList<>();
+		StringBuilder answer = new StringBuilder();
+
+
+		for (char c : X.toCharArray())
+			tmpX.put(c, tmpX.getOrDefault(c, 0) + 1);
+
+		for (char c : Y.toCharArray())
+			tmpY.put(c, tmpY.getOrDefault(c, 0) + 1);
+
+		for (char c : tmpX.keySet()) {
+			if (tmpY.containsKey(c)) {
+				int min = Math.min(tmpX.get(c), tmpY.get(c));
+				for (int i = 0; i < min; i++)
+					commonNumbers.add(c);
+			}
+		}
+
+		if (commonNumbers.isEmpty())
+			return "-1";
+
+		Collections.sort(commonNumbers, Collections.reverseOrder());
+
+		for (char c : commonNumbers)
+			answer.append(c);
+
+		return answer.toString().matches("0+") ? "0" : answer.toString();
+	}
+
+	// 체육복
+	public int solution68(int n, int[] lost, int[] reserve) {
+		int[] spare = new int[n];
+		int answer = 0;
+
+		for (int i : lost)
+			spare[i - 1]--;
+		for (int i : reserve)
+			spare[i - 1]++;
+
+		for (int i = 0; i < spare.length; i++) {
+			if (spare[i] == -1) {
+				if (i > 0 && spare[i - 1] == 1) {
+					spare[i]++;
+					spare[i - 1]--;
+				} else if (i < spare.length - 1 && spare[i + 1] == 1) {
+					spare[i]++;
+					spare[i + 1]--;
+				}
+			}
+		}
+
+		for (int i : spare)
+			if (i >= 0) answer++;
+		return answer;
+	}
 
 
 }
