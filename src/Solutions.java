@@ -1718,27 +1718,74 @@ public class Solutions {
 		return new int[]{highRank, lowRank};
 	}
 
-	// 옹알이 (2)
+
+	// 옹알이 (2) // 50점
 	public int solution66(String[] babbling) {
 		int answer = 0;
 
-		String[] onlyPronounce = new String[]{"aya", "ye", "woo", "ma"};
-		StringBuilder tmp;
+		for (String b : babbling) {
+			String modified = b.replaceAll("aya|ye|woo|ma", "");
 
-		for (String s : babbling) {
+			if (modified.isEmpty())
+				answer++;
+		}
 
-			tmp = new StringBuilder(s);
+		return answer;
+	}
 
-			for (String p : onlyPronounce) {
-				int i = tmp.indexOf(p);
-				while (i != -1) {
-					tmp.delete(i, i + p.length());
-					i = tmp.indexOf(p);
+	// 옹알이 (2) // 55점
+	public int solution66_1(String[] babbling) {
+		int answer = 0;
+		char babyJustSaid = ' ';
+		boolean babyCantBabbleIt;
+
+		for (String b : babbling) {
+			char[] tmp = b.replaceAll("aya", "1")
+					.replace("ye", "2")
+					.replace("woo", "3")
+					.replace("ma", "4")
+					.toCharArray();
+
+			babyCantBabbleIt = true;
+
+			for (char c : tmp) {
+				if (babyJustSaid == c) {
+					babyCantBabbleIt = false;
+					break;
 				}
+
+				if (c != '1' && c != '2' && c != '3' && c != '4') {
+					babyCantBabbleIt = false;
+					break;
+				}
+
+				babyJustSaid = c;
 			}
 
-			if (tmp.isEmpty())
+			if (babyCantBabbleIt)
 				answer++;
+		}
+
+		return answer;
+	}
+
+	// 옹알이 (2)
+	public int solution66_2(String[] babbling) {
+		int answer = 0;
+
+		for (String b : babbling) {
+			String replaced = b.replaceAll("aya", "1")
+					.replaceAll("ye", "2")
+					.replaceAll("woo", "3")
+					.replaceAll("ma", "4");
+
+			if (replaced.matches("^[1234]+$") &&
+					!replaced.contains("11") &&
+					!replaced.contains("22") &&
+					!replaced.contains("33") &&
+					!replaced.contains("44")) {
+				answer++;
+			}
 		}
 
 		return answer;
@@ -1836,6 +1883,7 @@ public class Solutions {
 			if (i >= 0) answer++;
 		return answer;
 	}
+
 
 
 }
