@@ -35,6 +35,7 @@ public class Main {
 //	}
 //		System.out.println(zeroSolutions.solution2(10));
 
+		Solutions2.solution69("123");
 
 	}
 

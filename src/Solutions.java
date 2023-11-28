@@ -1884,8 +1884,6 @@ public class Solutions {
 		return answer;
 	}
 
-
-
 }
 
 // import java.util.*;
