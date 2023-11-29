@@ -35,7 +35,10 @@ public class Main {
 //	}
 //		System.out.println(zeroSolutions.solution2(10));
 
-		Solutions2.solution69("123");
+		String[] test1 = new String[]{"AN", "CF", "MJ", "RT", "NA"};
+		int[] test2 = new int[]{5, 3, 2, 7, 5};
+
+		Solutions2.solution74(test1,test2);
 
 	}
 
