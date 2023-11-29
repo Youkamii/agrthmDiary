@@ -105,6 +105,11 @@ public class Solutions2 {
 		return answer.toString();
 	}
 
+	public int solution73(int[] ingredient) {
+		int answer = 0;
+		return answer;
+	}
+
 }
 
 // import java.util.*;
