@@ -105,11 +105,109 @@ public class Solutions2 {
 		return answer.toString();
 	}
 
+	// 햄버거
 	public int solution73(int[] ingredient) {
+		Queue<Integer> dishIngredient = new LinkedList<>();
+		int[] dish = new int[4];
 		int answer = 0;
+
+		for (int i = 0; i < ingredient.length; i++) {
+			dishIngredient.add(ingredient[i]);
+			if (dishIngredient.size() >= 4 && i < ingredient.length - 3) {
+
+				for (int j = 0; j < 4; j++)
+					dish[j] = dishIngredient.poll();
+
+				if (isItGoodBugger(dish))
+					answer++;
+				else {
+					for (int j = 0; j < 4; j--)
+						dishIngredient.add(dish[j]);
+				}
+			}
+		}
+
 		return answer;
+	}
+
+	public boolean isItGoodBugger(int[] dish) {
+
+		int[] goodBugger = new int[]{1, 3, 2, 1};
+
+		for (int i = 0; i < dish.length; i++) {
+			if (dish[i] != goodBugger[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	// 햄버거
+	public int solution73_1(int[] ingredient) {
+		Queue<Integer> dishIngredient = new LinkedList<>();
+		int answer = 0;
+
+		for (int i : ingredient) {
+			dishIngredient.add(i);
+
+			if (dishIngredient.size() >= 4) {
+				List<Integer> tmpDish = new LinkedList<>(dishIngredient);
+
+				if (tmpDish.get(0) == 1 && tmpDish.get(1) == 2 && tmpDish.get(2) == 3 && tmpDish.get(3) == 1) {
+					answer++;
+
+					for (int j = 0; j < 4; j++)
+						dishIngredient.poll();
+
+				}
+			}
+		}
+		return answer;
+
+	}
+
+	// 햄버거 // 완료
+	public int solution73_2(int[] ingredient) {
+		int goodBugger = 0;
+		List<Integer> dishIngredient = new ArrayList<>();
+
+		for (int i : ingredient) {
+			dishIngredient.add(i);
+
+			if (dishIngredient.size() > 3) {
+				if (dishIngredient.get(dishIngredient.size() - 1) == 1
+						&& dishIngredient.get(dishIngredient.size() - 2) == 3
+						&& dishIngredient.get(dishIngredient.size() - 3) == 2
+						&& dishIngredient.get(dishIngredient.size() - 4) == 1) {
+
+					goodBugger++;
+
+					for (int j = 0; j < 4; j++)
+						dishIngredient.remove(dishIngredient.size() - 1);
+
+				}
+			}
+		}
+		return goodBugger;
 	}
 
 }
 
 // import java.util.*;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
