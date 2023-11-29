@@ -300,30 +300,25 @@ public class Solutions2 {
 
 	// 달리기 경주
 	public String[] solution77(String[] players, String[] callings) {
-		Map<Integer, String> rankPlayers = new HashMap<>();
-		int tmpRank;
+		Map<String, Integer> playerRanks = new HashMap<>();
 		String tmpName;
+		int tmpRank;
 
 		for (int i = 0; i < players.length; i++)
-			rankPlayers.put(i + 1, players[i]);
+			playerRanks.put(players[i], i);
 
 		for (String name : callings) {
-			for (Map.Entry<Integer, String> entry : rankPlayers.entrySet()) {
-				if (entry.getValue().equals(name)) {
-					tmpRank = entry.getKey();
-					tmpName = rankPlayers.get(tmpRank - 1);
-					rankPlayers.put(tmpRank, tmpName);
-					rankPlayers.put(tmpRank - 1, name);
-					break;
-				}
-			}
+			tmpRank = playerRanks.get(name);
+			tmpName = players[tmpRank - 1];
+
+			players[tmpRank - 1] = name;
+			players[tmpRank] = tmpName;
+
+			playerRanks.put(name, tmpRank - 1);
+			playerRanks.put(tmpName, tmpRank);
 		}
 
-		String[] arrayAnswer = new String[rankPlayers.size()];
-		for (int i = 0; i < rankPlayers.size(); i++)
-			arrayAnswer[i] = rankPlayers.get(i + 1);
-
-		return arrayAnswer;
+		return players;
 	}
 
 
