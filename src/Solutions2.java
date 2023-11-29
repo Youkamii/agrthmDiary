@@ -300,7 +300,6 @@ public class Solutions2 {
 
 	// 달리기 경주
 	public String[] solution77(String[] players, String[] callings) {
-		List<String> answer = new ArrayList<>();
 		Map<Integer, String> rankPlayers = new HashMap<>();
 		int tmpRank;
 		String tmpName;
@@ -309,29 +308,22 @@ public class Solutions2 {
 			rankPlayers.put(i + 1, players[i]);
 
 		for (String name : callings) {
-			tmpName = f
+			for (Map.Entry<Integer, String> entry : rankPlayers.entrySet()) {
+				if (entry.getValue().equals(name)) {
+					tmpRank = entry.getKey();
+					tmpName = rankPlayers.get(tmpRank - 1);
+					rankPlayers.put(tmpRank, tmpName);
+					rankPlayers.put(tmpRank - 1, name);
+					break;
+				}
+			}
 		}
 
+		String[] arrayAnswer = new String[rankPlayers.size()];
 		for (int i = 0; i < rankPlayers.size(); i++)
-			answer.add(rankPlayers.get);
-
-		String[] arrayAnswer = new String[answer.size()];
-		for (int i = 0; i < arrayAnswer.length; i++)
-			arrayAnswer[i] = answer.get(i);
+			arrayAnswer[i] = rankPlayers.get(i + 1);
 
 		return arrayAnswer;
-	}
-
-	public String fullName (String[] players, String initialName) {
-
-		String fullName = "";
-
-		for (String name : players) {
-			if (name.startsWith(initialName))
-				fullName = name;
-		}
-		return fullName;
-
 	}
 
 
