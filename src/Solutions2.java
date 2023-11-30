@@ -259,10 +259,11 @@ public class Solutions2 {
 
 		String[][] termsArray = new String[terms.length][2];
 		String[][] privaciesArray = new String[privacies.length][4];
+		// A, 6
+		// A, 2021.05.02
 
-		for (int i = 0; i < terms.length; i++) {
+		for (int i = 0; i < terms.length; i++)
 			termsArray[i] = terms[i].split(" ");
-		}
 
 		for (int i = 0; i < privacies.length; i++) {
 			privaciesArray[i][0] = String.valueOf(privacies[i].charAt(11));
@@ -287,6 +288,12 @@ public class Solutions2 {
 
 	public boolean checkDDay(String today, String termsArray, String privaciesDateStr) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+
+		// "2023.11.30" - > Date 변환
+		// yy.MM.dd
+		// "23.11.30 -> Date
+		// "yyyy.MM.dd" // "yyMMdd" // 231130
+
 		LocalDate todayDate = LocalDate.parse(today, formatter);
 		LocalDate privacyDate = LocalDate.parse(privaciesDateStr, formatter);
 
@@ -315,6 +322,10 @@ public class Solutions2 {
 			playerRanks.put(name, tmpRank - 1);
 			playerRanks.put(tmpName, tmpRank);
 		}
+
+		// tmp = a
+		//  a = b
+		//  b = a
 
 		return players;
 	}
@@ -399,10 +410,14 @@ public class Solutions2 {
 
 
 
+    // 과제 진행하기
 	public String[] solution78_1(String[][] plans) {
 		List<Plan> planList = new ArrayList<>();
+
 		List<String> answerList = new ArrayList<>();
 		Stack<Plan> pausedPlans = new Stack<>();
+
+
 
 		// 시간 -> 분 기준으로 바꾼다.
 		// 시간을 기준으로 sort
@@ -490,13 +505,13 @@ public class Solutions2 {
 		String subject;
 		int timeInMinute;
 		int duration;
-		boolean jobDone;
+
 
 		public Plan(String subject, int timeInMinute, int duration) {
 			this.subject = subject;
 			this.timeInMinute = timeInMinute;
 			this.duration = duration;
-			this.jobDone = false;
+
 		}
 	}
 
@@ -551,6 +566,91 @@ public class Solutions2 {
 			this.reportUser = new ArrayList<>();
 			this.whoReportMe = new ArrayList<>();
 		}
+	}
+
+	// 공원 산책
+	public int[] solution80(String[] park, String[] routes) {
+		String[][] map = new String[park.length][park[0].length()];
+
+		int[] whereIsMyDoggy = new int[2];
+
+		for (int i = 0; i < park.length; i++) {
+			map[i] = park[i].split("");
+			for (int j = 0; j < map[i].length; j++) {
+				if (Objects.equals(map[i][j], "S"))
+					whereIsMyDoggy = new int[]{i, j};
+			}
+		}
+
+		for (String s : routes) {
+			String[] order = s.split(" ");
+			String direction = order[0];
+			int distance = Integer.parseInt(order[1]);
+
+
+			if (canITMove(direction, whereIsMyDoggy, map, distance)) {
+				while (distance > 0) {
+					switch (direction) {
+						case "E" -> whereIsMyDoggy[1]++;
+						case "W" -> whereIsMyDoggy[1]--;
+						case "N" -> whereIsMyDoggy[0]--;
+						case "S" -> whereIsMyDoggy[0]++;
+					}
+					distance--;
+				}
+			}
+		}
+		return whereIsMyDoggy;
+	}
+	public boolean canITMove(String direction, int[] whereIsMyDoggy, String[][] map, int distance) {
+		int currentY = whereIsMyDoggy[0];
+		int currentX = whereIsMyDoggy[1];
+
+		switch (direction) {
+			case "E":
+				for (int i = 1; i <= distance; i++) {
+					if (currentX + i >= map[0].length || Objects.equals(map[currentY][currentX + i], "X"))
+						return false;
+				}
+				break;
+			case "W":
+				for (int i = 1; i <= distance; i++) {
+					if (currentX - i < 0 || Objects.equals(map[currentY][currentX - i], "X"))
+						return false;
+				}
+				break;
+			case "N":
+				for (int i = 1; i <= distance; i++) {
+					if (currentY - i < 0 || Objects.equals(map[currentY - i][currentX], "X"))
+						return false;
+				}
+				break;
+			case "S":
+				for (int i = 1; i <= distance; i++) {
+					if (currentY + i >= map.length || Objects.equals(map[currentY + i][currentX], "X"))
+						return false;
+				}
+				break;
+		}
+
+		return true;
+	}
+
+	//최댓값과 최솟값
+	public String solution81(String s) {
+		String[] arrayS = s.split(" ");
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+
+		for (String sInt : arrayS) {
+			int tmpInt = Integer.parseInt(sInt);
+			if (tmpInt < min)
+				min = tmpInt;
+			if (tmpInt > max)
+				max = tmpInt;
+		}
+
+		return min + " " + max;
 	}
 
 
