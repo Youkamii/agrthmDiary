@@ -35,10 +35,15 @@ public class Main {
 //	}
 //		System.out.println(zeroSolutions.solution2(10));
 
-		String[] test1 = new String[]{"AN", "CF", "MJ", "RT", "NA"};
-		int[] test2 = new int[]{5, 3, 2, 7, 5};
+//		String[] test1 = new String[]{"AN", "CF", "MJ", "RT", "NA"};
+//		int[] test2 = new int[]{5, 3, 2, 7, 5};
+//
+//		Solutions2.solution74(test1,test2);
 
-		Solutions2.solution74(test1,test2);
+//		System.out.println(1300000 % 1234567);
+//		System.out.println(1800000 % 1234567);
+//		System.out.println(3100000 % 1234567);
+
 
 	}
 
