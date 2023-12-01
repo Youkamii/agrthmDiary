@@ -653,6 +653,87 @@ public class Solutions2 {
 		return min + " " + max;
 	}
 
+	// 조이스틱
+	public int solution82(String name) {
+		// {A , B , C}
+		char[] targetNameArray = name.toCharArray();
+		int totalMoveCount = 0;
+		int nameLength = targetNameArray.length;
+		int minLeftRight = nameLength - 1;
+
+		for (int i = 0; i < nameLength; i++) {
+			totalMoveCount += joystickMoveCounter(targetNameArray[i]);
+
+			int nextIndex = i + 1;
+			while (nextIndex < nameLength && targetNameArray[nextIndex] == 'A')
+				nextIndex++;
+
+			minLeftRight = Math.min(minLeftRight, i + nameLength - nextIndex +
+					Math.min(i, nameLength - nextIndex));
+		}
+
+		totalMoveCount += minLeftRight;
+
+		return totalMoveCount;
+	}
+
+//	public int rightORLeft(char[] targetNameArray) {
+//		int length = targetNameArray.length;
+//		int minMove = length - 1;
+//
+//		for (int i = 0; i < length; i++) {
+//			int next = i + 1;
+//			while (next < length && targetNameArray[next] == 'A') {
+//				next++;
+//			}
+//
+//			int move = 2 * i + length - next;
+//			minMove = Math.min(minMove, move);
+//		}
+//
+//		return minMove;
+//	}
+
+	//char[] aToM = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'};
+	//char[] zToN = {'Z', 'Y', 'X', 'W', 'V', 'U', 'T', 'S', 'R', 'Q', 'P', 'O', 'N'};
+
+
+	public int joystickMoveCounter(char c) {
+		return Math.min(c - 'A', 'Z' - c + 1);
+	}
+//	public int joystickMoveCounter (char c) {
+//		if (c >= 'A' && c < 'N')
+//			return c - 'A';
+//		else if (c > 'N' && c <= 'Z')
+//			return 'Z' - c + 1;
+//		return 0;
+//	}
+
+//	public int joystickMoveCounter (char c) {
+//
+//		int count = 0;
+//		char myA;
+//
+//		if (c < 'M') {
+//			myA = 'A';
+//
+//			while(myA != c) {
+//				count++;
+//				myA++;
+//			}
+//		} else if (c > 'N') {
+//			count = 1;
+//			myA = 'Z';
+//
+//			while(myA != c) {
+//				count++;
+//				myA--;
+//			}
+//		}
+//
+//		return count;
+//	}
+
 
 
 
