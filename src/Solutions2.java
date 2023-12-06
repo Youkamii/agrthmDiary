@@ -753,8 +753,8 @@ public class Solutions2 {
 		int tmp;
 		int num1 = 1;
 		int num2 = 1;
-
-		for (int i = 2; i< n; i++) {
+		// 1 1 2 3 5 8 13
+		for (int i = 2; i < n; i++) {
 			tmp = num2;
 			num2 = (num1 + num2) % 1234567;
 			num1 = tmp;
@@ -778,9 +778,12 @@ public class Solutions2 {
 			s = Integer.toBinaryString(s.length());
 		}
 
+		// Integer.toString(s.length(), 8)
+
 		return new int[] {diversionCount, removeZero};
 	}
 
+	//예상대진표
 	public int solution85(int n, int a, int b)
 	{
 		// 총 경기 수는 항상 n - 1 번
@@ -826,6 +829,7 @@ public class Solutions2 {
 		return matchCount;
 	}
 
+	// N개의 최소공배수
 	public int solution86(int[] arr) {
 		int answer = arr[0];
 
@@ -837,7 +841,7 @@ public class Solutions2 {
 	}
 
 	public int euclidean86(int answer, int next) {
-		long lcm = answer * next;
+		long lcm = (long) answer * next;
 		int tmp = 1;
 
 		while ( tmp > 0 ) {
@@ -848,6 +852,196 @@ public class Solutions2 {
 
 		return (int)lcm / answer;
 	}
+
+//	public int[] solution87(int n, long k) {
+//		Set<List<Integer>> permutations = new HashSet<>();
+//		List<Integer> numbers = new ArrayList<>();
+//		for (int i = 1; i <= n; i++) {
+//			numbers.add(i);
+//		}
+//		generatePermutations(new ArrayList<>(), numbers, permutations);
+//
+//		int[] answer = permutations.stream().findAny().get((int) k);
+//		return ;
+//	}
+
+	// 줄 서는 방법
+	public static int[] solution87(int n, long k) {
+		int[] answer = new int[n];
+		ArrayList<Integer> numbers = new ArrayList<>();
+
+		k--;
+		long factorial = 1;
+
+		for (int i = 1; i <= n; i++) {
+			factorial *= i;
+			numbers.add(i);
+		}
+
+		for (int i = 0; i < n; i++) {
+			factorial /= (n - i);
+			int index = (int) (k / factorial);
+			answer[i] = numbers.remove(index);
+			k %= factorial;
+		}
+
+		return answer;
+	}
+
+	// 멀리 뛰기
+	public long solution88(int n) {
+
+		long a = 1;
+		long b = 1;
+		long tmp;
+
+		for (int i = 1; i <= n; i++) {
+			tmp = a;
+			a = (a + b) % 1234567;
+			b = tmp;
+		}
+
+		return a;
+	}
+
+	// 1 1 2 3 5 8 13 21 34
+	// 1 1 2 3 4 5 6? 7?
+
+	//6칸
+	// 1 1 1 1 1 1
+//1
+	// 2 1 1 1 1
+	// 1 2 1 1 1
+	// 1 1 2 1 1
+	// 1 1 1 2 1
+	// 1 1 1 1 2
+//5
+	// 2 2 1 1
+	// 2 1 2 1
+	// 2 1 1 2
+	// 1 2 2 1
+	// 1 2 1 2
+	// 1 1 2 2
+//6
+	// 2 2 2
+//1
+
+	// 호텔 대실
+	public int solution89(String[][] book_time) {
+		List<int[]> booking = new ArrayList<>();
+
+		for (String[] time : book_time) {
+			int start = returnMinute89(time[0]);
+			int end = returnMinute89(time[1]) + 10;
+			booking.add(new int[]{start, end});
+		}
+		Collections.sort(booking, Comparator.comparingInt(a -> a[0]));
+
+		PriorityQueue<Integer> rooms = new PriorityQueue<>();
+
+		for (int[] reservation : booking) {
+			if (!rooms.isEmpty() && rooms.peek() <= reservation[0])
+				rooms.poll();
+			rooms.offer(reservation[1]);
+		}
+		return rooms.size();
+	}
+	// 입실 퇴실
+	public int returnMinute89(String s) {
+		String[] parts = s.split(":");
+		return Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+	}
+
+	// 귤 고르기
+//	public static int solution90(int k, int[] tangerine) {
+//		int answer = 0;
+//		int sameCount = 0;
+//		int currentSize = 0;
+//
+//		Arrays.sort(tangerine);
+//
+//		for (int i = tangerine.length - 1; i >= 0; i--) {
+//			if (currentSize != tangerine[i]) {
+//				currentSize = tangerine[i];
+//				sameCount = 1;
+//				answer++;
+//			} else {
+//				sameCount++;
+//			}
+//
+//
+//		}
+//
+//		return answer;
+//	}
+
+	// 귤 고르기
+	public static int solution90(int k, int[] tangerine) {
+		int answer = 0;
+		Map<Integer, Integer> tangerineSize = new HashMap<>();
+		for (int size : tangerine)
+			tangerineSize.put(size, tangerineSize.getOrDefault(size, 0) + 1);
+
+		List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(tangerineSize.entrySet());
+
+		entries.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+
+		int selected = 0;
+		for (Map.Entry<Integer, Integer> entry : entries) {
+			if (selected >= k) break;
+			selected += entry.getValue();
+			answer++;
+		}
+
+		return answer;
+	}
+
+	// 연속 부분 수열 합의 개수
+//	public int solution91(int[] elements) {
+//		Set<Integer> answer = new HashSet<>();
+//
+//		for (int cases = 1; cases <= elements.length; cases++) {
+//			for (int i = 0; i < elements.length - cases; i++) {
+//				int sum = 0;
+//				for (int j = i; j < i + cases; j++) {
+//					sum += elements[j];
+//				}
+//				answer.add(sum);
+//			}
+////			if (cases > 1) {
+////				int sum = 0;
+////				int currentCases = cases
+////				while (currentCases > 0) {
+////					sum += elements[elements.length - 1 - currentCases];
+////					currentCases--;
+////				}
+////
+////			}
+//		}
+//
+//		return answer.size();
+//	}
+
+	public int solution91(int[] elements) {
+		Set<Integer> answer = new HashSet<>();
+		int Length = elements.length;
+		int[] doubleElements = new int[Length * 2];
+
+		for (int i = 0; i < Length * 2; i++)
+			doubleElements[i] = elements[i % Length];
+
+		for (int cases = 1; cases <= Length; cases++) {
+			for (int i = 0; i < Length * 2 - cases; i++) {
+				int sum = 0;
+				for (int j = i; j < i + cases; j++) {
+					sum += doubleElements[j];
+				}
+				answer.add(sum);
+			}
+		}
+		return answer.size();
+	}
+
 
 
 }

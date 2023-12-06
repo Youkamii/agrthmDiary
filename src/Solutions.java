@@ -500,7 +500,7 @@ public class Solutions {
 
 		String answer = "";
 		char[] tmpArray = s.toCharArray();
-
+// 스페이스, 딜리트
 		if ('a' <= tmpArray[0] && tmpArray[0] <= 'z')
 			tmpArray[0] -= 32;
 		for (int i = 0; i < tmpArray.length; i++){

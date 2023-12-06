@@ -45,6 +45,15 @@ public class Main {
 //		System.out.println(3100000 % 1234567);
 
 
+//		int[] test = Solutions2.solution90(3, 5);
+//		for (int i : test)
+//			System.out.println(i);
+
+//		int[] g = new int[]{1, 3, 2, 5, 4, 5, 2, 3};
+//		System.out.println(Solutions2.solution90(6, g));
+
+		System.out.println("hi");
+
 	}
 
 }
