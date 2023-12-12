@@ -574,6 +574,11 @@ public class Solutions2 {
 
 		int[] whereIsMyDoggy = new int[2];
 
+		// ["SOO","OOO","OOO"]	["E 2","S 2","W 1"]
+		// "SXO" "OSX" E 0 < distance == 1
+		// "OOO"
+		// "OOO"
+
 		for (int i = 0; i < park.length; i++) {
 			map[i] = park[i].split("");
 			for (int j = 0; j < map[i].length; j++) {
@@ -885,6 +890,10 @@ public class Solutions2 {
 			k %= factorial;
 		}
 
+		// DP
+		// BFS
+		// DFS
+
 		return answer;
 	}
 
@@ -986,10 +995,10 @@ public class Solutions2 {
 
 		entries.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
-		int selected = 0;
+		int box = 0;
 		for (Map.Entry<Integer, Integer> entry : entries) {
-			if (selected >= k) break;
-			selected += entry.getValue();
+			if (box >= k) break;
+			box += entry.getValue();
 			answer++;
 		}
 
@@ -1041,6 +1050,132 @@ public class Solutions2 {
 		}
 		return answer.size();
 	}
+
+	// n^2 배열 자르기
+	public int[] solution92(int n, long left, long right) {
+//		List<Integer> answerList = new ArrayList<>();
+
+		StringBuilder answerBuilder = new StringBuilder();
+
+
+
+		int[] answer = new int[(int)(right - left)];
+//		for (long i = 0; i + left < right; i++)
+//			answer[(int)i] = answerList.get((int)(left + i));
+		return answer;
+	}
+
+	public static long solution93(String expression) {
+		List<String> equationList = new ArrayList<>();
+		StringBuilder tmp = new StringBuilder();
+
+		for (int i = 0; i < expression.length(); i++) {
+			char c = expression.charAt(i);
+			if (c >= '0' && c <= '9')
+				tmp.append(c);
+			else {
+				if (!tmp.isEmpty()) {
+					equationList.add(tmp.toString());
+					tmp = new StringBuilder();
+				}
+				equationList.add(Character.toString(c));
+			}
+		} // 숫자 연산자 구분
+		equationList.add(tmp.toString());
+
+		List<String> operators = Arrays.asList("+", "-", "*");
+		Collections.sort(operators);
+
+		long answer = 0;
+		do {
+			long result = calculate(new ArrayList<>(equationList), operators);
+			answer = Math.max(answer, Math.abs(result));
+		} while (nextPermutation(operators));
+
+		return answer;
+	}
+	private static long calculate(List<String> elements, List<String> operators) {
+		for (String op : operators) {
+			for (int i = 0; i < elements.size(); i++) {
+				if (elements.get(i).equals(op)) {
+					long a = Long.parseLong(elements.get(i - 1));
+					long b = Long.parseLong(elements.get(i + 1));
+					long res = op.equals("+") ? a + b : (op.equals("-") ? a - b : a * b);
+					elements.set(i - 1, String.valueOf(res));
+					elements.remove(i);
+					elements.remove(i);
+					i--;
+				}
+			}
+		}
+		return Long.parseLong(elements.get(0));
+	}
+
+	private static boolean nextPermutation(List<String> list) {
+		int i = list.size() - 2;
+		while (i >= 0 && list.get(i).compareTo(list.get(i + 1)) >= 0) {
+			i--;
+		}
+		if (i < 0) return false;
+
+		int j = list.size() - 1;
+		while (list.get(i).compareTo(list.get(j)) >= 0) {
+			j--;
+		}
+
+		Collections.swap(list, i, j);
+		Collections.reverse(list.subList(i + 1, list.size()));
+		return true;
+	}
+
+
+	public static int solution94(int[][] data, int col, int row_begin, int row_end) {
+		int answer = 0;
+
+		Arrays.sort(data, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] a, int[] b) {
+				if (a[col - 1] != b[col - 1])
+					return Integer.compare(a[col - 1], b[col - 1]);
+				else
+					return Integer.compare(b[0], a[0]);
+			}
+		});
+
+		for (int i = row_begin; i <= row_end; i++) {
+			int sum = 0;
+			for (int j = 0; j < data[i - 1].length; j++) {
+				sum += data[i - 1][j] % i;
+			}
+			answer ^= sum;
+		}
+
+		return answer;
+
+		// {4, 2, 9}, {2, 2, 6}, {1, 5, 10}, {3, 8, 3}
+
+
+
+		//정렬된 데이터에서 S_i를 i 번째 행의 튜플에 대해 각 컬럼의 값을 i 로 나눈 나머지들의 합으로 정의합니다.
+		//row_begin ≤ i ≤ row_end 인 모든 S_i를 누적하여 bitwise XOR 한 값을 해시 값으로서 반환합니다.
+
+		// 2 % 2 + 2 % 2 + 6 % 2 = 0
+
+		//S_2 = (2 mod 2) + (2 mod 2) + (6 mod 2) = 0 입니다.
+		//S_3 = (1 mod 3) + (5 mod 3) + (10 mod 3) = 4 입니다.
+
+		//따라서 해시 값은 S_2 XOR S_3 = 4 입니다.
+
+
+	}
+
+	// 대충 만든 자판
+	public int[] solution95(String[] keymap, String[] targets) {
+		int[] answer = {};
+		return answer;
+	}
+
+
 
 
 

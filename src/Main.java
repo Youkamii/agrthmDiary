@@ -49,10 +49,22 @@ public class Main {
 //		for (int i : test)
 //			System.out.println(i);
 
-//		int[] g = new int[]{1, 3, 2, 5, 4, 5, 2, 3};
-//		System.out.println(Solutions2.solution90(6, g));
+		int[] g = new int[]{1, 3, 2, 5, 4, 5, 2, 3};
+		System.out.println(Solutions2.solution90(6, g));
+//
+//		System.out.println("hi");
 
-		System.out.println("hi");
+//		System.out.println(Solutions2.solution93("100-200*300-500+20"));
+
+//		int[][] array = {
+//				{2, 2, 6},
+//				{1, 5, 10},
+//				{4, 2, 9},
+//				{3, 8, 3}
+//		};
+//
+//		System.out.println(Solutions2.solution94(array, 2, 2, 3));
+
 
 	}
 
