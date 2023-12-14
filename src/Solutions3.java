@@ -81,5 +81,31 @@ public class Solutions3 {
 		return answer;
 
 	}
+플
+	// 튜플
+	public int[] solution101(String s) {
+		Map<String,Integer> myMap = new HashMap<>();
+		String[] tuples = s.replaceAll("[{}]", " ").trim().split(" , ");
+		// 괄호 정규식, " , " 기준으로 split
+		// replace replaceAll replayFirst   },{ ->  " , "
+		//2 2,1 2,1,3 2,1,3,4
+
+
+
+		for (String tuple : tuples) {
+			for (String num : tuple.split(","))
+				myMap.put(num, myMap.getOrDefault(num, 0) + 1);
+		} // 남은 , 기준으로 split, put
+
+		// 친구 집인데 거의 아지트
+
+		int[] answer = new int[myMap.size()];
+
+		for (String key : myMap.keySet())
+			answer[myMap.size() - myMap.get(key)] = Integer.parseInt(key);
+		// 튜플의 순서는 등장한 빈도
+
+		return answer;
+	}
 
 }
