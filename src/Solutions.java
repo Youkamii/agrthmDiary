@@ -103,9 +103,6 @@ public class Solutions {
 		long answer = 0;
 
 		for (int i = 0; 0 != (tmp /= 10) ; i++){ lengthNum++; }
-		public int solution(int[] citations) {
-
-		}
 		long[] answerArray = new long[lengthNum];
 
 		for (int i = 0; i < lengthNum ; i++ ) {
