@@ -59,19 +59,23 @@ public class Solutions3 {
 		for (int i = 0; i < want.length; i++)
 			iWantIT.put(want[i], number[i]);
 
+		// 남은 날짜가 원하는 기간 미만
 		for (int i = 0; i <= discount.length - 10; i++) {
 			Map<String, Integer> discountSchedule = new HashMap<>();
 			for (int j = i; j < i + 10; j++)
 				discountSchedule.put(discount[j], discountSchedule.getOrDefault(discount[j], 0) + 1);
 
 			Boolean 지금이니 = true;
-
 			for (String item : iWantIT.keySet()) {
 				if (discountSchedule.getOrDefault(item, 0) < iWantIT.get(item)) {
 					지금이니 = false;
 					break;
 				}
 			}
+//			if (iWantIT.equals(discountSchedule))
+//				지금이니 = false; 이딴거 안된다.
+
+			// 맵은 순서 보장,
 
 			if (지금이니)
 				answer++;
@@ -81,7 +85,7 @@ public class Solutions3 {
 		return answer;
 
 	}
-플
+
 	// 튜플
 	public int[] solution101(String s) {
 		Map<String,Integer> myMap = new HashMap<>();

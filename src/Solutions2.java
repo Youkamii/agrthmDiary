@@ -1065,6 +1065,15 @@ public class Solutions2 {
 		return answer;
 	}
 
+	public int[] solution92_1(int n, long left, long right) {
+		int[] answer = new int[(int)(right - left + 1)];
+
+		for (long i = left; i <= right; i++)
+			answer[(int)(i - left)] = (int)(Math.max(i / n, i % n) + 1);
+
+		return answer;
+	}
+
 	public static long solution93(String expression) {
 		List<String> equationList = new ArrayList<>();
 		StringBuilder tmp = new StringBuilder();
@@ -1169,17 +1178,103 @@ public class Solutions2 {
 
 	}
 
-	// 대충 만든 자판
-	public int[] solution95(String[] keymap, String[] targets) {
-		int[] answer = {};
+
+	// 빛의 경로 사이클
+
+	public int rows95, cols95;
+	public String[] grid95;
+	public boolean[][][] visited95;
+	public int[] solution95(String[] grid) {
+
+		grid95 = grid;
+		rows95 = grid.length;
+		cols95 = grid[0].length();
+		visited95 = new boolean[rows95][cols95][4];
+
+		List<Integer> cycles = new ArrayList<>();
+
+		for (int i = 0; i < rows95; i++) {
+			for (int j = 0; j < cols95; j++) {
+				for (int k = 0; k < 4; 	   k++) {
+					cycles.add(findCycle95(i, j, k));
+				}
+			}
+		}
+
+		return cycles.stream().sorted().mapToInt(i -> i).toArray();
+	}
+
+	public int findCycle95 (int row, int col, int dir) {
+		int answer = 0;
+
+		while (!visited95[row][col][dir]) {
+			visited95[row][col][dir] = true;
+			answer++;
+
+			if (grid95[row].charAt(col) == 'L') dir = (dir + 3) % 4;
+			else if (grid95[row].charAt(col) == 'R') dir = (dir + 1) % 4;
+
+			row = (dir == 0) ? (row + 1) % rows95 : (dir == 2) ? (row - 1 + rows95) % rows95 : row;
+			col = (dir == 1) ? (col - 1 + cols95) % cols95 : (dir == 3) ? (col + 1) % cols95 : col;
+		}
+
 		return answer;
 	}
 
 
+	// 여행 경로
 
 
 
-}
+
+
+	public int solution96(String[][] maps) {
+		// 입력값 〉	[[1, 0, 1, 1, 1],
+		// 			[1, 0, 1, 0, 1],
+		// 			[1, 0, 1, 1, 1],
+		// 			[1, 1, 1, 0, 1],
+		// 			[0, 0, 0, 0, 1]]
+		// 기댓값 〉	11
+
+		int[] dx = {-1, 1, 0, 0};
+		int[] dy = {0, 0, -1, 1};
+
+		// int[] xy {-1, 0 , 1, 0, -1}
+
+		Boolean[][] isVisited = new Boolean[maps.length][maps[0].length];
+		Queue<int[]> queue = new LinkedList<>();
+
+		isVisited[0][0] = true;
+		queue.add(new int[]{0, 0, 1});
+
+		while (!queue.isEmpty()) {
+			int[] current = queue.poll();
+			int x = current[0];
+			int y = current[1];
+			int L = current[2];
+
+			if (x == maps.length - 1 && y == maps[0].length - 1)
+				return L;
+
+			for (int i = 0; i < 4; i++) {
+				int nextX = x + dx[i];
+				int nextY = y + dy[i];
+
+				if (nextX < 0 || nextY < 0 ||
+						nextX >= maps.length || nextY >= maps[0].length ||
+						maps[nextX][nextY] == 0 || isVisited[nextX][nextY] != null)
+					continue;
+
+				isVisited[nextX][nextY] = true;
+				queue.add(new int[]{nextX, nextY, L + 1});
+			}
+		}
+		return -1;
+	}
+
+
+}	// ISTJ
+
 
 // import java.util.*;
 
