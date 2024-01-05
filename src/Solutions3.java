@@ -28,7 +28,7 @@ public class Solutions3 {
 //					answerList.add(entry.getKey());
 //				}
 //			}
-//		}
+//		2}
 
 	// 메뉴 리뉴얼
 	public String[] solution100(String[] orders, int[] course) {
