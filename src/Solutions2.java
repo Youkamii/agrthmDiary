@@ -1260,10 +1260,10 @@ public class Solutions2 {
 				int nextX = x + dx[i];
 				int nextY = y + dy[i];
 
-				if (nextX < 0 || nextY < 0 ||
-						nextX >= maps.length || nextY >= maps[0].length ||
-						maps[nextX][nextY] == 0 || isVisited[nextX][nextY] != null)
-					continue;
+//				if (nextX < 0 || nextY < 0 ||
+//						nextX >= maps.length || nextY >= maps[0].length ||
+//						maps[nextX][nextY] == 0 || isVisited[nextX][nextY] != null)
+//					continue;
 
 				isVisited[nextX][nextY] = true;
 				queue.add(new int[]{nextX, nextY, L + 1});

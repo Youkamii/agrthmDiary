@@ -137,4 +137,19 @@ public class Solutions3 {
 		dfs103Controller(target, nowDepth + 1, currentSum + numbers103[nowDepth]);
 		dfs103Controller(target, nowDepth + 1, currentSum - numbers103[nowDepth]);
 	}
+
+	public int[] solution104(int []arr) {
+		Queue<Integer> answerQueue = new LinkedList<>();
+		int beforeN = -1;
+
+		for (int i : arr) {
+			if (!answerQueue.contains(i) || beforeN != i) {
+				answerQueue.add(i);
+				beforeN = i;
+			}
+		}
+
+		return answerQueue.stream().mapToInt(i->i).toArray();
+	}
 }
+
