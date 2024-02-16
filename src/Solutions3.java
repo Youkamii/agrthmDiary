@@ -151,5 +151,16 @@ public class Solutions3 {
 
 		return answerQueue.stream().mapToInt(i->i).toArray();
 	}
+
+	public static int solution105(int[] d, int budget) {
+		Arrays.sort(d);
+		int count = 0;
+		for(int i : d) {
+			budget -= i;
+			if(budget < 0) break;
+			count++;
+		}
+		return count;
+	}
 }
 
